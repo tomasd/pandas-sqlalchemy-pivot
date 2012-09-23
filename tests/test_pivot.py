@@ -1,3 +1,4 @@
+from decimal import Decimal
 from unittest import TestCase
 import sqlalchemy
 import pivots
@@ -160,3 +161,24 @@ class PivotTest(TestCase):
 
         self.assertEquals(2, table.male['201001'])
         self.assertEquals(1, table.female['201001'])
+
+    def test_decimal(self):
+        data = [(u'201001', u'male', Decimal(10)),
+                (u'201001', u'male', Decimal(5)),
+                (u'201001', u'female', Decimal(10))]
+
+        table = pivots.pivot_table(data,
+                                   rows='yearmonth',
+                                   cols='gender',
+                                   values='price', aggfunc=len)
+
+        self.assertEquals(2, table.male['201001'])
+        self.assertEquals(1, table.female['201001'])
+
+        table = pivots.pivot_table(data,
+                                   rows='yearmonth',
+                                   cols='gender',
+                                   values='price', aggfunc={'price':'mean'})
+
+        self.assertEquals(7.5, table.male['201001'])
+        self.assertEquals(10, table.female['201001'])

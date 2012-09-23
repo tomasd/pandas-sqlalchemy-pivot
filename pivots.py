@@ -1,4 +1,5 @@
 import collections
+from decimal import Decimal
 from functools import partial
 import sqlalchemy
 import pandas as pd
@@ -8,6 +9,11 @@ def pivot_table(data, rows, cols, values, aggfunc):
     columns = _column_names(rows, cols, _aggr_column_names(values))
 
     if data:
+        def _preprocess_row(row):
+            return [float(a) if isinstance(a, Decimal) else a for a in row]
+
+        data = map(_preprocess_row, data)
+
         df = pd.DataFrame(data, columns=columns)
 
         pivot = df.pivot_table(rows=rows, cols=cols, values=values,
