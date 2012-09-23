@@ -30,7 +30,7 @@ class PivotTest(TestCase):
     def test_pivot_data(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         select = self.mytable.select().order_by('yearmonth', 'gender')
         data = pivots.pivot_data(
@@ -49,7 +49,7 @@ class PivotTest(TestCase):
     def test_pivot_table(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         select = self.mytable.select().order_by('yearmonth', 'gender')
         table = pivots.pivot_table_from_select(
@@ -65,7 +65,7 @@ class PivotTest(TestCase):
     def test_avg(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         table = pivots.pivot_table_from_select(
             self.mytable.select(),
@@ -78,7 +78,7 @@ class PivotTest(TestCase):
     def test_count(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         table = pivots.pivot_table_from_select(
             self.mytable.select(),
@@ -99,7 +99,7 @@ class PivotTest(TestCase):
     def test_len(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         table = pivots.pivot_table_from_select(
             self.mytable.select(),
@@ -112,7 +112,7 @@ class PivotTest(TestCase):
     def test_multiple_columns(self):
         self._insert_data(1, '201001', 'male', 10, town='BA')
         self._insert_data(2, '201001', 'male', 5, town='KE')
-        self._insert_data(1, '201001', 'female', 10, town='BA')
+        self._insert_data(3, '201001', 'female', 10, town='BA')
 
         table = pivots.pivot_table_from_select(
             self.mytable.select(),
@@ -126,7 +126,7 @@ class PivotTest(TestCase):
     def test_multiple_functions(self):
         self._insert_data(1, '201001', 'male', 10)
         self._insert_data(2, '201001', 'male', 5)
-        self._insert_data(1, '201001', 'female', 10)
+        self._insert_data(3, '201001', 'female', 10)
 
         table = pivots.pivot_table_from_select(
             self.mytable.select(),
