@@ -8,7 +8,7 @@ setup(
     packages=find_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"]
     ),
-    py_modules=['pivots'],
+    py_modules=[],
     url='',
     license='MIT',
     author='Tomas Drencak',
