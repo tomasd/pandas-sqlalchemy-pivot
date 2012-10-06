@@ -28,3 +28,7 @@ Outputs:
 
 
 For more examples look at tests.
+
+Similar projects
+================
+Similar project for postgresql is Mali Akmanalp's https://github.com/makmanalp/sqlalchemy-crosstab-postgresql
